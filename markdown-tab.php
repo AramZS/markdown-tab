@@ -35,7 +35,17 @@ define( 'MT_URL', plugins_url('/', __FILE__) );
 
 class markdown_tab {
 
+	function __construct() {
+		add_action('admin_enqueue_scripts', array($this, 'add_post_page_scripts') ,10,1);
 	
+	}	
+	
+	function add_post_page_scripts ( $hook ) {
+		if (is_admin() && ($hook == ('post-new.php' || 'edit.php'))) {
+			//Append tab to wp-content-editor-tools,
+			//Like: <a id="content-tmce" class="hide-if-no-js wp-switch-editor switch-tmce" onclick="switchEditors.switchto(this);">Visual</a>
+		}
+	}
 
 }
 
